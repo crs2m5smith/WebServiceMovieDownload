@@ -1,11 +1,13 @@
 # WebServiceMovieDownload
-web service movie download app
+Web Service Movie Download App
 
 Enter your Api Key form dbmovies.
 
 This is a demo app to demostrate the following Xamarin Forms functionailies :
 
 Saving sessions that persist using Sqlite.net
+
+Shared Preferences, Toast Message/UI Alerts And Other Native Functionailties Used In PCL Project
 
 Xamarin Dependency Services and DI
 
@@ -21,4 +23,4 @@ Button Commands
 
 Loading Display While Fetching And Updating Data
 
-Async and Task
+Async And Task Methods For Loading Data
