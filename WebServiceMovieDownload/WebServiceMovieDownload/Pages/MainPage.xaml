@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WebServiceMovieDownload"
+             x:Class="WebServiceMovieDownload.Pages.MainPage">
+    <ContentPage.Content >
+        <!--Can do carousel view instead of horz lists, but those do not support pull to refresh-->
+        <ScrollView   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+            <AbsoluteLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1" >
+
+                <StackLayout  Spacing="10" Padding="50"  x:Name="MainLayout"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="Black">
+                    <Grid  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="300" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="300" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="300" />
+                        </Grid.RowDefinitions>
+                        <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                            <Button  x:Name="Favorites"  Command="{Binding FavoritesCommand}"  BackgroundColor="Gray" TextColor="White"  Text="My Favorites" />
+                        </StackLayout>
+                        <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                            <Label Text="Top Rated" FontSize="18" TextColor="White" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <ListView x:Name="TopRatedListView" Grid.Row="2" SelectedItem="{Binding SelectedItem }" BackgroundColor="Black"   ItemsSource="{Binding TopRatedMovies}"  RowHeight="200" 
+                         IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshTopRatedCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" 
+                         SeparatorVisibility="None"
+                         Rotation="270">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <ContentView Rotation="90" WidthRequest="200"  >
+                                            <Image Source="{Binding ImageSource}"  Aspect="AspectFit" />
+                                        </ContentView>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <StackLayout Grid.Row="3"   Orientation ="Horizontal">
+                            <Label Text="Popular" FontSize="18" TextColor="White" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <ListView x:Name="PopularListView" BackgroundColor="Black" Grid.Row="4" SelectedItem="{Binding SelectedItem }" ItemsSource="{Binding PopularMovies}" RowHeight="200" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                        IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshPopularCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" 
+                        SeparatorVisibility="None" Rotation="270">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <ContentView Rotation="90" WidthRequest="200" >
+                                            <Image Source="{Binding ImageSource}"  Aspect="AspectFit" />
+                                        </ContentView>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <StackLayout Grid.Row="5"   Orientation ="Horizontal">
+                            <Label Text="Now Playing" FontSize="18" TextColor="White" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                        <ListView x:Name="NowPlayingListView" BackgroundColor="Black" Grid.Row="6" SelectedItem="{Binding SelectedItem }"   ItemsSource="{Binding NowPlayingMovies}" RowHeight="200" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                        SeparatorVisibility="None" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshNowPlayingCommand}" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" 
+                        Rotation="270" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <ContentView Rotation="90" WidthRequest="200" >
+                                            <Image Source="{Binding ImageSource}"  Aspect="AspectFit" />
+                                        </ContentView>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </StackLayout>
+                <StackLayout BackgroundColor="Black" Opacity=".6" IsVisible="{Binding IsBusy}" AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds=".5,.3,1,1"
+                         x:Name="ActIndicatorContainer">
+                    <ActivityIndicator x:Name="ActIndicator" HorizontalOptions="CenterAndExpand"  VerticalOptions="StartAndExpand"  Color="#ff0000"
+                         IsRunning="True"  HeightRequest="100"  WidthRequest="100"/>
+                </StackLayout>
+            </AbsoluteLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage> 
