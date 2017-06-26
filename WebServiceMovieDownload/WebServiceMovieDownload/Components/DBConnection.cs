@@ -13,7 +13,7 @@ namespace WebServiceMovieDownload.Components
 {
     public class DBConnection
     {
-        private string apiKey = "ab41356b33d100ec61e6c098ecc92140";
+        private string apiKey = "<EnterApiKey>";
         private static DBConnection _db;
         public static DBConnection db
         {
