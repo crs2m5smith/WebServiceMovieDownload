@@ -13,7 +13,7 @@ http://docs.themoviedb.apiary.io/#reference/account/accountidlists
 
 Web Service Movie Download App
 
-Enter your Api Key form dbmovies.
+Enter your Api Key from dbmovies.
 
 This is a demo app to demostrate the following Xamarin Forms functionailies :
 
